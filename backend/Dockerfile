@@ -9,5 +9,3 @@ RUN npm i
 EXPOSE 5000
 
 CMD ["npm","run","dev"]
-
-

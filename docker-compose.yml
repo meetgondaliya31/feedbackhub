@@ -2,8 +2,12 @@ services:
   db:
     image: postgres
     container_name: feedbackhub-db
-    env_file:
-        - .env
+    # env_file:
+    #     - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
@@ -13,7 +17,7 @@ services:
       - feedbackhub_net
 
   backend:
-    build: ./backend
+    image: backend:latest
     container_name: backend
     ports:
       - "5000:5000"
@@ -22,11 +26,15 @@ services:
     restart: always
     networks:
       - feedbackhub_net
-    env_file:
-      - .env
-    
+    # env_file:
+    #   - .env
+    environment:
+      - PORT=${PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@feedbackhub-db:5432/${POSTGRES_DB}
+
   frontend:
-    build: ./frontend
+    image: frontend:latest
     container_name: frontend
     ports:
       - "5173:5173"
