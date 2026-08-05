@@ -68,5 +68,8 @@ jobs:
                 fi
 
             - name: docker compose up
-              run: docker compose up -d --build
+              run: |
+                docker compose down feedbackhub-frontend feedbackhub-backend
+                docker compose pull
+                docker compose up -d
                 
