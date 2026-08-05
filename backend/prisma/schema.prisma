@@ -1,0 +1,77 @@
+// FeedbackHub Production Prisma Database Schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  fullName     String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  forms        Form[]
+
+  @@map("users")
+}
+
+model Form {
+  id          String             @id @default(uuid())
+  title       String
+  description String?
+  status      String             @default("Draft") // Draft, Published, Archived
+  userId      String             @map("created_by")
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions   Question[]
+  responses   FeedbackResponse[]
+  createdAt   DateTime           @default(now()) @map("created_at")
+  updatedAt   DateTime           @updatedAt @map("updated_at")
+
+  @@map("forms")
+}
+
+model Question {
+  id           String   @id @default(uuid())
+  formId       String   @map("form_id")
+  form         Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+  questionText String   @map("question_text")
+  questionType String   @map("question_type") // short_text, long_text, rating, single_choice, multiple_choice
+  isRequired   Boolean  @default(false) @map("is_required")
+  displayOrder Int      @default(0) @map("display_order")
+  options      String?  // JSON stringified array of choice options e.g. ["Option 1", "Option 2"]
+  answers      Answer[]
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("questions")
+}
+
+model FeedbackResponse {
+  id          String   @id @default(uuid())
+  formId      String   @map("form_id")
+  form        Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+  submittedBy String?  @map("submitted_by")
+  isAnonymous Boolean  @default(true) @map("is_anonymous")
+  rating      Int      @default(5)
+  comment     String?
+  submittedAt DateTime @default(now()) @map("submitted_at")
+  answers     Answer[]
+
+  @@map("feedback_responses")
+}
+
+model Answer {
+  id         String           @id @default(uuid())
+  responseId String           @map("response_id")
+  response   FeedbackResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  questionId String           @map("question_id")
+  question   Question         @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answerText String           @map("answer_text")
+  createdAt  DateTime         @default(now()) @map("created_at")
+
+  @@map("answers")
+}

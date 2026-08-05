@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres
+    container_name: feedbackhub-db
+    environment:
+      POSTGRES_USER: feedbackhub
+      POSTGRES_PASSWORD: feedbackhub
+      POSTGRES_DB: feedbackhub
+    ports:
+      - "5432:5432"
+    volumes:
+      - newvol:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  newvol:      

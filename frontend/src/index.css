@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F4EEE3;
+    color: #1F1F1F;
+  }
+}
+
+/* Glass Panels - Warm Beige Tint */
+.glass-panel-beige {
+  background: rgba(244, 238, 227, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #D8CCB3;
+}
+
+.glass-panel-warm {
+  background: rgba(232, 223, 200, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #D8CCB3;
+}
+
+/* Primary Brand Gradients */
+.bg-gradient-olive-primary {
+  background: linear-gradient(135deg, #3B6215 0%, #5D8A2D 100%);
+}
+
+.bg-gradient-section-accent {
+  background: linear-gradient(135deg, #E8DFC8 0%, #F4EEE3 100%);
+}
+
+.gradient-text-olive {
+  background: linear-gradient(135deg, #1F1F1F 0%, #3B6215 60%, #5D8A2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Soft Warm Ambient Shadows */
+.shadow-olive-soft {
+  box-shadow: 0 10px 30px -5px rgba(59, 98, 21, 0.22);
+}
+
+.shadow-beige-soft {
+  box-shadow: 0 10px 30px -5px rgba(216, 204, 179, 0.35);
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
