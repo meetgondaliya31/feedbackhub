@@ -69,7 +69,7 @@ jobs:
 
             - name: docker compose up
               run: |
-                docker compose down feedbackhub-frontend feedbackhub-backend
+                docker compose down frontend backend
                 docker compose pull
                 docker compose up -d
                 
