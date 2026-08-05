@@ -17,7 +17,7 @@ services:
       - feedbackhub_net
 
   backend:
-    image: backend-backend
+    image: meetgondaliya31/feedbackhub-backend
     container_name: backend
     ports:
       - "5000:5000"
@@ -34,17 +34,15 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@feedbackhub-db:5432/${POSTGRES_DB}
 
   frontend:
-    image: feedbackhub-frontend
+    image: meetgondaliya31/feedbackhub-frontend
     container_name: frontend
     ports:
-      - "5173:5173"
+      - "8080:80"
     depends_on:
       - backend
     restart: always
     networks:
       - feedbackhub_net
-    env_file:
-      - .env
 
 
 networks:
