@@ -45,7 +45,7 @@ jobs:
               with:
                 context: ./${{ matrix.dir_name }}
                 push: true
-                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-${{ matrix.dir_name }}:latest
+                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/backend-${{ matrix.dir_name }}:latest
                 file: ./${{ matrix.dir_name }}/Dockerfile
 
 

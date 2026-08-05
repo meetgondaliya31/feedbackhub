@@ -17,7 +17,7 @@ services:
       - feedbackhub_net
 
   backend:
-    image: feedbackhub-backend
+    image: backend-backend
     container_name: backend
     ports:
       - "5000:5000"
