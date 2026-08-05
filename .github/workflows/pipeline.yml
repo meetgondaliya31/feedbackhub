@@ -60,8 +60,13 @@ jobs:
               uses: actions/checkout@v7.0.1
 
             - name: copy env file
-              run: cp .env.example .env
+              run: |
+                if [ -f ".env" ];then
+                    echo ".env file already exists"
+                else
+                    cp .env.example .env
+                fi
 
             - name: docker compose up
-              run: sudo docker compose up -d --build
+              run: docker compose up -d --build
                 
