@@ -8,4 +8,4 @@ RUN npm i
 
 EXPOSE 5000
 
-CMD ["npm","run","dev"]
+CMD ["node", "./src/index.js"]
