@@ -54,7 +54,7 @@ jobs:
 
             - name: docker compose up
               run: |
-                docker compose down frontend backend
-                docker compose pull frontend backend
+                docker compose down backend
+                docker compose pull backend
                 docker compose up -d
                 
