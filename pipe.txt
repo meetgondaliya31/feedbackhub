@@ -11,9 +11,9 @@ jobs:
 
     standard-build:
 
-        # strategy:
-        #     matrix:
-        #         dir_name: [frontend, backend]
+        strategy:
+            matrix:
+                dir_name: [frontend, backend]
 
         runs-on: ubuntu-latest
 
@@ -45,19 +45,10 @@ jobs:
               # if: matrix.dir_name == 'backend'
               uses: docker/build-push-action@v7.3.0
               with:
-                context: ./backend
+                context: ./${{ matrix.dir_name }}
                 push: true
-                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-backend:latest
-                file: ./backend/Dockerfile
-
-            - name: docker build and push
-              # if: matrix.dir_name == 'backend'
-              uses: docker/build-push-action@v7.3.0
-              with:
-                context: ./frontend
-                push: true
-                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-frontend:latest
-                file: ./frontend/Dockerfile
+                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-${{ matrix.dir_name }}:latest
+                file: ./${{ matrix.dir_name }}/Dockerfile
 
 
             
