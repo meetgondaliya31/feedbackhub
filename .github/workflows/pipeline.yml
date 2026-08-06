@@ -71,5 +71,5 @@ jobs:
               run: |
                 docker compose down frontend backend
                 docker compose pull frontend backend
-                docker compose up -d --build
+                docker compose up -d
                 
