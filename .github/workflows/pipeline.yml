@@ -7,6 +7,9 @@ on:
             - 'frontend/**'
             - 'backend/**'
 
+    workflow_dispatch:
+      
+
 jobs: 
 
     standard-build:
