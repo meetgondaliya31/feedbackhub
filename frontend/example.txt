@@ -10,13 +10,3 @@ frontendfrontend
 frontend
 frontend
 frontend
-frontend
-frontendfrontend
-frontend
-frontend
-frontend
-frontend
-frontend
-frontend
-frontend
-frontendfrontend
