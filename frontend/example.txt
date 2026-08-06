@@ -1,0 +1,8 @@
+- name: docker build and push
+              # if: matrix.dir_name == 'backend'
+              uses: docker/build-push-action@v7.3.0
+              with:
+                context: ./${{ matrix.dir_name }}
+                push: true
+                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-${{ matrix.dir_name }}:latest
+                file: ./${{ matrix.dir_name }}/Dockerfile
