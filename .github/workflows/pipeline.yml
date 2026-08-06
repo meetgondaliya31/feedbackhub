@@ -28,19 +28,19 @@ jobs:
             - name: docker buildx
               uses: docker/setup-buildx-action@v4.2.0
 
-            - name: docker build and push
-              if: matrix.dir_name == 'frontend'
-              uses: docker/build-push-action@v7.3.0
-              with:
-                context: ./${{ matrix.dir_name }}
-                push: true
-                tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-${{ matrix.dir_name }}:latest
-                file: ./${{ matrix.dir_name }}/Dockerfile
-                build-args: |
-                    VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
+            # - name: docker build and push
+            #   if: matrix.dir_name == 'frontend'
+            #   uses: docker/build-push-action@v7.3.0
+            #   with:
+            #     context: ./${{ matrix.dir_name }}
+            #     push: true
+            #     tags: docker.io/${{ secrets.DOCKER_USERNAME }}/feedbackhub-${{ matrix.dir_name }}:latest
+            #     file: ./${{ matrix.dir_name }}/Dockerfile
+                # build-args: |
+                #     VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
             
             - name: docker build and push
-              if: matrix.dir_name == 'backend'
+              # if: matrix.dir_name == 'backend'
               uses: docker/build-push-action@v7.3.0
               with:
                 context: ./${{ matrix.dir_name }}
