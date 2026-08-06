@@ -70,5 +70,5 @@ jobs:
             - name: docker compose up
               run: |
               
-                docker compose up -d --build
+                docker ps -a
                 
